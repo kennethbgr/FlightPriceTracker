@@ -28,7 +28,7 @@ for index in range(len(sheet_data)):
         link = flight_data.search_flight_data(sheet_data[index])[2]
         is_price_lower = notification_manager.compare_prices(flight_price, sheet_data[index])
         if is_price_lower:
-            # notification_manager.send_txt(flight_info) ----> enable texting of information
+            # notification_manager.send_txt(flight_info, link) ----> enable texting of information
             emails = datamanager.read_email()
             notification_manager.send_email(flight_info, emails, link)
 
