@@ -27,10 +27,10 @@ class NotificationManager:
         else:
             return False
 
-    def send_txt(self, text: str):
+    def send_txt(self, text: str, link: str):
         client = Client(TWILIO_ACCT_SID, TWILIO_AUTH_TOKEN)
         message = client.messages.create(
-            body=f"Low price alert!\n{text}",
+            body=f"Low price alert!\n{text}\n{link}",
             from_=TWILIO_PHONE,
             to= MY_PHONE, )
         print(message.status)
