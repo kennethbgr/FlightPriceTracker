@@ -30,6 +30,8 @@ class FlightData:
         self.via_city = " "
 
     def search_flight_data(self, data: dict):
+        """Accept a dictionary of IATA Codes. Will communicate with the Tequila API and will return flight data
+        in a usable format for the parameters (IATA Codes) passed"""
         iata_code = data['iataCode']
         flight_search_params = {
             "fly_from": self.departure_airport_code,
