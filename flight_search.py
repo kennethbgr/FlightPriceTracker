@@ -11,6 +11,7 @@ flight_header = {
 
 class FlightSearch:
     def replace_iata(self, data:dict):
+        """Will pass a list containing city names and will return its IATA Code"""
         city = data['city']
         flight_params = {
             "term": city,
