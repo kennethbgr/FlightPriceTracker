@@ -15,11 +15,13 @@ class DataManager:
         self.response = ""
 
     def read_data(self):
+        """Read all data from Google Sheet using the Sheety API and return it in a usable format"""
         self.response = requests.get(url=SHEETY_PRICES_ENDPOINT, headers=sheety_headers)
         self.response.raise_for_status()
         return self.response.json()["prices"]
 
     def update_data(self, data: dict, index: int):
+        """Update IATA Codes in Google Sheet using the Sheety API"""
         iata_value = data['iataCode']
         sheety_params = {
             "price": {
@@ -31,6 +33,7 @@ class DataManager:
         self.response.raise_for_status()
 
     def read_email(self):
+        """Read emails of users from Google Sheet using the Sheety API and return it in a usable format"""
         response = requests.get(url=SHEETY_USERS_ENDPOINT, headers=sheety_headers)
         response.raise_for_status()
         data = response.json()['users']
