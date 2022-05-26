@@ -20,6 +20,7 @@ class NotificationManager:
         self.current_price = 0
 
     def compare_prices(self, current_price: int, data:dict):
+        """Will compare prices between the current price of the flight to destination and the lowest price the user would pay for that flight."""
         self.lowest_price = data["lowestPrice"]
         self.current_price = current_price
         if self.current_price < self.lowest_price:
@@ -28,6 +29,7 @@ class NotificationManager:
             return False
 
     def send_txt(self, text: str, link: str):
+        """Send flight information to the user via text."""
         client = Client(TWILIO_ACCT_SID, TWILIO_AUTH_TOKEN)
         message = client.messages.create(
             body=f"Low price alert!\n{text}\n{link}",
@@ -36,6 +38,7 @@ class NotificationManager:
         print(message.status)
 
     def send_email(self, text: str, emails:list, link):
+        """Send flight information to the user via email."""
         with smtplib.SMTP("smtp.gmail.com") as connection:
             connection.starttls()
             connection.login(MY_EMAIL, MY_PASSWORD)
